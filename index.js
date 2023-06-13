@@ -3,6 +3,7 @@ const fs = require("fs");
 const http = require("http"); //requiring the built-in http module(giving us networking capabilities)
 const url = require("url");
 const replaceTemplate = require("./modules/replaceTemplate");
+const slugify = require("slugify"); //slug is last part of url unique string
 
 // const textIn = fs.readFileSync("./txt/input.txt", "utf-8");
 // console.log(textIn);
@@ -55,6 +56,13 @@ const tempProduct = fs.readFileSync(
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8");
 const dataObj = JSON.parse(data);
 
+const slug = dataObj.map((ele) =>
+  slugify(ele.productName, {
+    lower: true,
+  })
+);
+console.log(slug);
+
 //1. Create a server
 const server = http.createServer((req, res) => {
   const { query, pathname } = url.parse(req.url, true);
@@ -86,6 +94,7 @@ const server = http.createServer((req, res) => {
     });
     res.end(data);
   }
+
   //NOT FOUND
   else {
     res.writeHead(404, {
@@ -97,5 +106,9 @@ const server = http.createServer((req, res) => {
 });
 //2. Start a server
 server.listen(8001, "127.0.0.1", () =>
-  console.log("Server has been started on port 8001")
+  console.log("Server has been started on this port 8001")
 );
+// var a = Math.max();
+// var b = Math.min();
+// console.log(a);
+// console.log(b);
