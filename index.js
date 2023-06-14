@@ -12,7 +12,7 @@ const slugify = require("slugify"); //slug is last part of url unique string
 // Created by Basit Manzoor at ${Date.now()}`;
 
 // fs.writeFileSync("./txt/output.text", writeText);
-
+//thi is my first change
 // console.log("File written!");
 
 // //Asynchronous nature of Node Js: Blocking and Non-Blocking
